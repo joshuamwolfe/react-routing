@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import Home from './Home';
+import Eat from './Eat';
+import Drink from './Drink';
+
 function App() {
+  const [page, setPage] = useState ('home');
+
+  const showPage = () => {
+    if(page === 'home') return <Home/>
+    if(page === 'eat') return <Eat/>
+    if(page === 'drink') return <Drink/>
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className='App'>
+      <nav>
+        <a onclick={() => setPage('home')}>Home</a>
+        <a onclick={() => setPage('eat')}>Eat</a>
+        <a onclick={() => setPage('drink')}>Drink</a>
+      </nav>
+      {showPage()}
+    </main>
   );
 }
 
